@@ -1,0 +1,18 @@
+[project]
+id = "reinf"
+
+[api]
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public"]
+max_rows = 1000
+
+[auth]
+site_url = "http://localhost:8080"
+additional_redirect_urls = ["https://localhost:8080"]
+jwt_expiry = 3600
+enable_signup = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = false

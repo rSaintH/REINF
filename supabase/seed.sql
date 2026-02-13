@@ -1,0 +1,61 @@
+-- ============================================================
+-- Seed: Criar usuário admin inicial
+-- ============================================================
+-- IMPORTANTE: Este seed cria o usuário admin diretamente.
+-- Em ambiente Lovable/Supabase, execute estes comandos no SQL Editor
+-- do Supabase Dashboard.
+-- ============================================================
+
+-- 1. Criar o usuário no auth.users
+-- (No Supabase Dashboard, vá em Authentication > Users > Add User)
+-- Email: rafael@giacomoni.com.br
+-- Password: 123456
+
+-- 2. Após criar o usuário, pegue o UUID gerado e execute:
+-- INSERT INTO public.profiles (id, full_name, email, is_admin)
+-- VALUES ('<UUID_DO_USUARIO>', 'Rafael', 'rafael@giacomoni.com.br', true);
+
+-- ============================================================
+-- Alternativa: Se estiver usando o Supabase local (supabase start),
+-- descomente e execute o bloco abaixo:
+-- ============================================================
+
+-- Cria o usuário admin no auth.users (funciona apenas via SQL com acesso direto)
+-- INSERT INTO auth.users (
+--   instance_id,
+--   id,
+--   aud,
+--   role,
+--   email,
+--   encrypted_password,
+--   email_confirmed_at,
+--   raw_app_meta_data,
+--   raw_user_meta_data,
+--   created_at,
+--   updated_at,
+--   confirmation_token,
+--   email_change,
+--   email_change_token_new,
+--   recovery_token
+-- ) VALUES (
+--   '00000000-0000-0000-0000-000000000000',
+--   gen_random_uuid(),
+--   'authenticated',
+--   'authenticated',
+--   'rafael@giacomoni.com.br',
+--   crypt('123456', gen_salt('bf')),
+--   now(),
+--   '{"provider":"email","providers":["email"]}',
+--   '{}',
+--   now(),
+--   now(),
+--   '',
+--   '',
+--   '',
+--   ''
+-- );
+
+-- INSERT INTO public.profiles (id, full_name, email, is_admin)
+-- SELECT id, 'Rafael', 'rafael@giacomoni.com.br', true
+-- FROM auth.users
+-- WHERE email = 'rafael@giacomoni.com.br';
